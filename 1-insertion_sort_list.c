@@ -9,7 +9,7 @@
 void insertion_sort_list(listint_t **list)
 {
 	listint_t *current = *list;
-	listint_t *temp, *sorted = NULL;
+	listint_t *temp, *sorted, *pot = NULL;
 
 	if (current == NULL || current->next == NULL)
 		return;
@@ -39,9 +39,16 @@ void insertion_sort_list(listint_t **list)
 				temp->next->prev = current;
 			temp->next = current;
 			current->prev = temp;
+
+			pot = sorted;
+			while(pot->next)
+			{
+				pot = pot->next;
+			}
+			pot->next = next;
 		}
 		current = next;
 		print_list(sorted);
-	}
+}
 	*list = sorted;
 }
